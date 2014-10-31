@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Lists all available service offerings.
         #
@@ -10,36 +9,34 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'listServiceOfferings') 
+            options.merge!('command' => 'listServiceOfferings')
           else
             options.merge!('command' => 'listServiceOfferings')
           end
           request(options)
         end
       end
- 
-      class Mock
 
-        def list_service_offerings(options={})
+      class Mock
+        def list_service_offerings(options = {})
           flavors = []
           if service_offering_id = options['id']
-            flavor = self.data[:flavors][service_offering_id]
-            raise Fog::Compute::Exoscale::BadRequest unless flavor
+            flavor = data[:flavors][service_offering_id]
+            fail Fog::Compute::Exoscale::BadRequest unless flavor
             flavors = [flavor]
           else
-            flavors = self.data[:flavors].values
+            flavors = data[:flavors].values
           end
 
           {
-            "listserviceofferingsresponse" =>
+            'listserviceofferingsresponse' =>
             {
-              "count" => flavors.size,
-              "serviceoffering"=> flavors
+              'count' => flavors.size,
+              'serviceoffering' => flavors
             }
           }
         end
-      end 
+      end
     end
   end
 end
-

@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # A command to list events.
         #
@@ -10,15 +9,13 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'listEvents') 
+            options.merge!('command' => 'listEvents')
           else
             options.merge!('command' => 'listEvents')
           end
           request(options)
         end
       end
-
     end
   end
 end
-

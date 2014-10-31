@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Deletes a keypair by name
         #
@@ -10,16 +9,14 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'deleteSSHKeyPair') 
+            options.merge!('command' => 'deleteSSHKeyPair')
           else
-            options.merge!('command' => 'deleteSSHKeyPair', 
-            'name' => args[0])
+            options.merge!('command' => 'deleteSSHKeyPair',
+                           'name' => args[0])
           end
           request(options)
         end
       end
-
     end
   end
 end
-

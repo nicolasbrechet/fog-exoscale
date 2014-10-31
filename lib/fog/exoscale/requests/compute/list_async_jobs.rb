@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Lists all pending asynchronous jobs for the account.
         #
@@ -10,18 +9,18 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'listAsyncJobs') 
+            options.merge!('command' => 'listAsyncJobs')
           else
             options.merge!('command' => 'listAsyncJobs')
           end
           request(options)
         end
       end
- 
+
       class Mock
-        def list_async_jobs(options={})
+        def list_async_jobs(_options = {})
           # FIXME: support paging
-          jobs = self.data[:jobs]
+          jobs = data[:jobs]
           {
             'listasyncjobsresponse' => {
               'count' => jobs.size,
@@ -29,8 +28,7 @@ module Fog
             }
           }
         end
-      end 
+      end
     end
   end
 end
-

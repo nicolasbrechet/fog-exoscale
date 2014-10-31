@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # List registered keypairs
         #
@@ -10,15 +9,13 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'listSSHKeyPairs') 
+            options.merge!('command' => 'listSSHKeyPairs')
           else
             options.merge!('command' => 'listSSHKeyPairs')
           end
           request(options)
         end
       end
-
     end
   end
 end
-

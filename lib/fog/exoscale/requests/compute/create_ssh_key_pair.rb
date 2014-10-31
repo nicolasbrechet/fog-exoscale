@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Create a new keypair and returns the private key
         #
@@ -10,16 +9,14 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'createSSHKeyPair') 
+            options.merge!('command' => 'createSSHKeyPair')
           else
-            options.merge!('command' => 'createSSHKeyPair', 
-            'name' => args[0])
+            options.merge!('command' => 'createSSHKeyPair',
+                           'name' => args[0])
           end
           request(options)
         end
       end
-
     end
   end
 end
-

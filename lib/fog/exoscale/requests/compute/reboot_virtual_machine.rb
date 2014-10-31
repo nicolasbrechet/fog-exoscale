@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Reboots a virtual machine.
         #
@@ -10,26 +9,25 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'rebootVirtualMachine') 
+            options.merge!('command' => 'rebootVirtualMachine')
           else
-            options.merge!('command' => 'rebootVirtualMachine', 
-            'id' => args[0])
+            options.merge!('command' => 'rebootVirtualMachine',
+                           'id' => args[0])
           end
           request(options)
         end
       end
- 
+
       class Mock
-        def reboot_virtual_machine(options={})
+        def reboot_virtual_machine(_options = {})
           job_id = Fog::Exoscale.uuid
           {
-            "rebootvirtualmachineresponse" => {
-              "jobid" => job_id
+            'rebootvirtualmachineresponse' => {
+              'jobid' => job_id
             }
           }
         end
-      end 
+      end
     end
   end
 end
-

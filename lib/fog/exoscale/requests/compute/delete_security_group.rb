@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Deletes security group
         #
@@ -10,30 +9,29 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'deleteSecurityGroup') 
+            options.merge!('command' => 'deleteSecurityGroup')
           else
             options.merge!('command' => 'deleteSecurityGroup')
           end
           request(options)
         end
       end
- 
+
       class Mock
-        def delete_security_group(options={})
+        def delete_security_group(options = {})
           security_group_id = options['id']
-          if self.data[:security_groups][security_group_id]
-            self.data[:security_groups].delete(security_group_id)
+          if data[:security_groups][security_group_id]
+            data[:security_groups].delete(security_group_id)
             {
-              "deletesecuritygroupresponse" => {
-                "success" => "true"
+              'deletesecuritygroupresponse' => {
+                'success' => 'true'
               }
             }
           else
-            raise Fog::Compute::Exoscale::BadRequest.new('No security_group found')
+            fail Fog::Compute::Exoscale::BadRequest.new('No security_group found')
           end
         end
-      end 
+      end
     end
   end
 end
-

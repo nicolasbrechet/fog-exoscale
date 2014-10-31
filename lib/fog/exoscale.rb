@@ -6,6 +6,6 @@ require 'fog/exoscale/compute'
 module Fog
   module Exoscale
     extend Fog::Provider
-    service(:compute, "Compute")
+    service(:compute, 'Compute')
   end
 end

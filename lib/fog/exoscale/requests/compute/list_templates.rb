@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # List all public, private, and privileged templates.
         #
@@ -10,29 +9,28 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'listTemplates') 
+            options.merge!('command' => 'listTemplates')
           else
-            options.merge!('command' => 'listTemplates', 
-            'templatefilter' => args[0])
+            options.merge!('command' => 'listTemplates',
+                           'templatefilter' => args[0])
           end
           request(options)
         end
       end
- 
+
       class Mock
-        def list_templates(options={})
-          templates = self.data[:images].values
+        def list_templates(_options = {})
+          templates = data[:images].values
 
           {
-            "listtemplatesresponse" =>
+            'listtemplatesresponse' =>
               {
-                "count" => templates.size,
-                "template"=> templates
+                'count' => templates.size,
+                'template' => templates
               }
           }
         end
-      end 
+      end
     end
   end
 end
-

@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Returns an encrypted password for the VM
         #
@@ -10,16 +9,14 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'getVMPassword') 
+            options.merge!('command' => 'getVMPassword')
           else
-            options.merge!('command' => 'getVMPassword', 
-            'id' => args[0])
+            options.merge!('command' => 'getVMPassword',
+                           'id' => args[0])
           end
           request(options)
         end
       end
-
     end
   end
 end
-

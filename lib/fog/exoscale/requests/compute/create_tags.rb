@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Creates resource tag(s)
         #
@@ -10,18 +9,16 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'createTags') 
+            options.merge!('command' => 'createTags')
           else
-            options.merge!('command' => 'createTags', 
-            'tags' => args[0], 
-            'resourcetype' => args[1], 
-            'resourceids' => args[2])
+            options.merge!('command' => 'createTags',
+                           'tags' => args[0],
+                           'resourcetype' => args[1],
+                           'resourceids' => args[2])
           end
           request(options)
         end
       end
-
     end
   end
 end
-

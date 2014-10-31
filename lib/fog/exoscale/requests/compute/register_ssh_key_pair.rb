@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Register a public key in a keypair under a certain name
         #
@@ -10,17 +9,15 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'registerSSHKeyPair') 
+            options.merge!('command' => 'registerSSHKeyPair')
           else
-            options.merge!('command' => 'registerSSHKeyPair', 
-            'name' => args[0], 
-            'publickey' => args[1])
+            options.merge!('command' => 'registerSSHKeyPair',
+                           'name' => args[0],
+                           'publickey' => args[1])
           end
           request(options)
         end
       end
-
     end
   end
 end
-

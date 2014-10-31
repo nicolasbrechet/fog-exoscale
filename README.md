@@ -1,4 +1,4 @@
-# Fog::Exoscale
+### `fog-exoscale` - Exoscale module for fog
 
 [![Build Status](https://travis-ci.org/fog/fog-exoscale.svg?branch=master)](https://travis-ci.org/fog/fog-exoscale)[![Code Climate](https://codeclimate.com/github/fog/fog-exoscale/badges/gpa.svg)](https://codeclimate.com/github/fog/fog-exoscale)
 

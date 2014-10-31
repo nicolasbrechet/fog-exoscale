@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Retrieves the current status of asynchronous job.
         #
@@ -10,29 +9,28 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'queryAsyncJobResult') 
+            options.merge!('command' => 'queryAsyncJobResult')
           else
-            options.merge!('command' => 'queryAsyncJobResult', 
-            'jobid' => args[0])
+            options.merge!('command' => 'queryAsyncJobResult',
+                           'jobid' => args[0])
           end
           request(options)
         end
       end
- 
+
       class Mock
-        def query_async_job_result(options={})
+        def query_async_job_result(options = {})
           unless job_id = options['jobid']
-            raise Fog::Compute::Exoscale::BadRequest.new("Missing required parameter jobid")
+            fail Fog::Compute::Exoscale::BadRequest.new('Missing required parameter jobid')
           end
 
-          unless job = self.data[:jobs][job_id]
-            raise Fog::Compute::Exoscale::BadRequest.new("Unknown job id #{job_id}")
+          unless job = data[:jobs][job_id]
+            fail Fog::Compute::Exoscale::BadRequest.new("Unknown job id #{job_id}")
           end
 
-          {'queryasyncjobresultresponse' => job }
+          { 'queryasyncjobresultresponse' => job }
         end
-      end 
+      end
     end
   end
 end
-

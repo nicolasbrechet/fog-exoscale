@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Resets the password for virtual machine. The virtual machine must be in a "Stopped" state and the template must already support this feature for this command to take effect. [async]
         #
@@ -10,16 +9,14 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'resetPasswordForVirtualMachine') 
+            options.merge!('command' => 'resetPasswordForVirtualMachine')
           else
-            options.merge!('command' => 'resetPasswordForVirtualMachine', 
-            'id' => args[0])
+            options.merge!('command' => 'resetPasswordForVirtualMachine',
+                           'id' => args[0])
           end
           request(options)
         end
       end
-
     end
   end
 end
-

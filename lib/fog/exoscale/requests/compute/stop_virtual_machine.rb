@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Stops a virtual machine.
         #
@@ -10,16 +9,14 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'stopVirtualMachine') 
+            options.merge!('command' => 'stopVirtualMachine')
           else
-            options.merge!('command' => 'stopVirtualMachine', 
-            'id' => args[0])
+            options.merge!('command' => 'stopVirtualMachine',
+                           'id' => args[0])
           end
           request(options)
         end
       end
-
     end
   end
 end
-

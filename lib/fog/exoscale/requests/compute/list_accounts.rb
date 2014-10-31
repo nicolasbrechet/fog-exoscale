@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Lists accounts and provides detailed account information for listed accounts
         #
@@ -10,15 +9,13 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'listAccounts') 
+            options.merge!('command' => 'listAccounts')
           else
             options.merge!('command' => 'listAccounts')
           end
           request(options)
         end
       end
-
     end
   end
 end
-

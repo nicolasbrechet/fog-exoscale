@@ -2,7 +2,8 @@ require 'fog/core'
 require 'fog/xml'
 require 'fog/exoscale'
 
-Shindo.tests('Fog::Compute[:exoscale] | virtual machine requests', ['exoscale']) do
+Shindo.tests('Fog::Compute[:exoscale] | virtual machine requests',
+             ['exoscale']) do
 
   @virtual_machines_format = {
     'listvirtualmachinesresponse'  => {
@@ -42,9 +43,9 @@ Shindo.tests('Fog::Compute[:exoscale] | virtual machine requests', ['exoscale'])
         'isoname' => Fog::Nullable::String,
         'isoid' => Fog::Nullable::Integer,
         'securitygroup' => [
-           'id' => Integer,
-           'name' => Fog::Nullable::String,
-           'description' => Fog::Nullable::String
+          'id' => Integer,
+          'name' => Fog::Nullable::String,
+          'description' => Fog::Nullable::String
         ],
         'nic' => [
           'id' => String,

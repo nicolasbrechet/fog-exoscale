@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # List the virtual machines owned by the account.
         #
@@ -10,21 +9,20 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'listVirtualMachines') 
+            options.merge!('command' => 'listVirtualMachines')
           else
             options.merge!('command' => 'listVirtualMachines')
           end
           request(options)
         end
       end
- 
+
       class Mock
-        def list_virtual_machines(options={})
-          {"listvirtualmachinesresponse" =>
-            {"count" => self.data[:servers].values.size, "virtualmachine" => self.data[:servers].values}}
+        def list_virtual_machines(_options = {})
+          { 'listvirtualmachinesresponse' =>
+            { 'count' => data[:servers].values.size, 'virtualmachine' => data[:servers].values } }
         end
-      end 
+      end
     end
   end
 end
-

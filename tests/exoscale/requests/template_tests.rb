@@ -49,7 +49,7 @@ Shindo.tests('Fog::Compute[:exoscale] | template requests', ['exoscale']) do
 
     tests('#list_templates').formats(@templates_format) do
       pending if Fog.mocking?
-      Fog::Compute[:exoscale].list_templates('templateFilter' => "executable")
+      Fog::Compute[:exoscale].list_templates('templateFilter' => 'executable')
     end
 
   end

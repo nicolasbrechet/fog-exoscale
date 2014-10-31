@@ -1,7 +1,6 @@
 module Fog
   module Compute
     class Exoscale
-
       class Real
         # Changes the service offering for a virtual machine. The virtual machine must be in a "Stopped" state for this command to take effect.
         #
@@ -10,17 +9,15 @@ module Fog
           options = {}
           if args[0].is_a? Hash
             options = args[0]
-            options.merge!('command' => 'changeServiceForVirtualMachine') 
+            options.merge!('command' => 'changeServiceForVirtualMachine')
           else
-            options.merge!('command' => 'changeServiceForVirtualMachine', 
-            'serviceofferingid' => args[0], 
-            'id' => args[1])
+            options.merge!('command' => 'changeServiceForVirtualMachine',
+                           'serviceofferingid' => args[0],
+                           'id' => args[1])
           end
           request(options)
         end
       end
-
     end
   end
 end
-

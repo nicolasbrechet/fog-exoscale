@@ -1,11 +1,13 @@
+# encoding: UTF-8
+
 require "minitest/autorun"
 require "fog/exoscale"
 
 describe Fog::Compute::Exoscale do
   before do
     @config = {
-      :exoscale_api_key           => "GNo98yPx8tN_TJbGMVnv7pwM5iOeBbsv7iiM6L11FuXzYCSVSIJItOgPC4oTJkqwyLRp9jkADLVvRYkP2O3QLQ",
-      :exoscale_secret_access_key => "QzCBEd9f4O8c32-8FNggQKfAk52v0txjq7OO6T7tL0aLlAt8tw0Cv_neoqLGMsg1A7cX6e3BdI2MjOLtQv6UPw"
+      :exoscale_api_key           => ENV["EXO_API_KEY"],
+      :exoscale_secret_access_key => ENV["EXO_SECRET_KEY"]
     }
     
     @client = Fog::Compute::Exoscale.new(@config)
@@ -19,8 +21,28 @@ describe Fog::Compute::Exoscale do
     assert_respond_to @client, :list_zones
   end
 
+  it "responds to #all" do
+    assert_respond_to @client.zones, :all
+  end
+  
+  it "responds to #get" do
+    assert_respond_to @client.zones, :get
+  end
+  
+  it "responds to #save" do
+    assert_respond_to @client.zones.new, :save
+  end
+
   it "returns the zones collection " do
     @client.zones.wont_be_nil
+  end
+  
+  describe "when trying to create a new zone" do
+    it "raises an error" do
+      assert_raises Fog::Errors::Error do
+        @client.zones.new.save
+      end
+    end
   end
 
   it "returns a list of zones as a non-empty hash" do

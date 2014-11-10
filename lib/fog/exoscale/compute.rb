@@ -86,6 +86,9 @@ module Fog
       request :list_zones
       request :list_service_offerings
       
+      # This one is not advertised
+      request :list_networks
+      
       class Real
 
         def initialize(options={})
@@ -205,7 +208,8 @@ module Fog
 
       class Mock
         def initialize(options={})
-          @exoscale_api_key = options[:exoscale_api_key]
+          @exoscale_api_key           = options[:exoscale_api_key]
+          @exoscale_secret_access_key = options[:exoscale_secret_access_key]
         end
 
         def self.data
@@ -323,11 +327,11 @@ module Fog
               }},
               :flavors => { flavor_id => {
                 "id"          => flavor_id,
-                "name"        => "Medium Instance",
-                "displaytext" => "Medium Instance",
-                "cpunumber"   => 1,
-                "cpuspeed"    => 1000,
-                "memory"      => 1024,
+                "name"        => "Huge",
+                "displaytext" => "Huge",
+                "cpunumber"   => 8,
+                "cpuspeed"    => 2198,
+                "memory"      => 32184,
                 "created"     => "2012-05-09T14:48:36-0500",
                 "storagetype" => "shared",
                 "offerha"     => false,

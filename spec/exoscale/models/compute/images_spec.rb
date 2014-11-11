@@ -3,7 +3,7 @@
 require "minitest/autorun"
 require "fog/exoscale"
 
-describe Fog::Compute::Exoscale do
+describe "Fog::Compute::Exoscale::Images" do
   before do
     @config = {
       :exoscale_api_key           => ENV["EXO_API_KEY"],

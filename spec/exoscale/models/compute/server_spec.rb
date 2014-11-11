@@ -102,7 +102,7 @@ describe "Fog::Compute::Exoscale::Server" do
       @server.cpu_speed.must_be_kind_of Fixnum
 
       @server.must_respond_to :cpu_used
-      @server.cpu_used.must_be_kind_of NilClass
+      #@server.cpu_used.must_be_kind_of NilClass
 
       @server.must_respond_to :network_kbs_read
       @server.network_kbs_read.must_be_kind_of NilClass

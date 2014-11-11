@@ -115,7 +115,7 @@ module Fog
             'iptonetworklist'   => ip_to_network_list,
             'projectid'         => project_id,
             'keypair'           => key_name,
-            'userdata'           => user_data,
+            'userdata'          => user_data,
           }
 
           options.merge!('networkids' => network_ids) if network_ids

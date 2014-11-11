@@ -106,7 +106,7 @@ describe "Fog::Compute::Exoscale::Flavor" do
     end
     
     it "must raise an error" do
-      err = ->{ @client.flavors.new.save }.must_raise Fog::Errors::Error
+      err = lambda { @client.flavors.new.save }.must_raise Fog::Errors::Error
       err.message.must_equal "Creating a flavor is not supported"
     end
   end
@@ -117,7 +117,7 @@ describe "Fog::Compute::Exoscale::Flavor" do
     end
     
     it "must raise an error" do
-      err = ->{ @client.flavors.first.destroy }.must_raise Fog::Errors::Error
+      err = lambda { @client.flavors.first.destroy }.must_raise Fog::Errors::Error
       err.message.must_equal "Destroying a flavor is not supported"
     end
   end

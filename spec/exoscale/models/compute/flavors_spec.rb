@@ -17,7 +17,7 @@ describe "Fog::Compute::Exoscale::Flavors" do
     @client.flavors.must_respond_to :all
   end
   
-  it "responds to #get" do
+  it "must respond to #get" do
     @client.flavors.must_respond_to :get
   end
   

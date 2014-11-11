@@ -3,7 +3,7 @@
 require "minitest/autorun"
 require "fog/exoscale"
 
-describe Fog::Compute::Exoscale do
+describe "Fog::Compute::Exoscale::Zones" do
   before do
     @config = {
       :exoscale_api_key           => ENV["EXO_API_KEY"],
@@ -13,63 +13,33 @@ describe Fog::Compute::Exoscale do
     @client = Fog::Compute::Exoscale.new(@config)
   end
 
-  it "responds to #zones" do
-    assert_respond_to @client, :zones
-  end
-
-  it "responds to #list_zones" do
-    assert_respond_to @client, :list_zones
-  end
-
-  it "responds to #all" do
-    assert_respond_to @client.zones, :all
+  it "must respond to #all" do
+    @client.zones.must_respond_to :all
   end
   
-  it "responds to #get" do
-    assert_respond_to @client.zones, :get
+  it "must respond to #get" do
+    @client.zones.must_respond_to :get
   end
   
-  it "responds to #save" do
-    assert_respond_to @client.zones.new, :save
-  end
-
-  it "returns the zones collection " do
+  it "must return a list of zones as a non-empty hash" do
     @client.zones.wont_be_nil
+    @client.zones.all.wont_be_nil
+    @client.zones.must_be_kind_of Fog::Compute::Exoscale::Zones
+    @client.zones.all.must_be_kind_of Fog::Compute::Exoscale::Zones
+    @client.zones.count.must_be :>=, 1
+    @client.zones.all.count.must_be :>=, 1
+    @client.zones.count.must_equal @client.zones.all.count
   end
   
-  describe "when trying to create a new zone" do
-    it "raises an error" do
-      assert_raises Fog::Errors::Error do
-        @client.zones.new.save
-      end
+  describe "when getting a specific zone" do
+    before do
+      @zone = @client.zones.get("1128bd56-b4d9-4ac6-a7b9-c715b187ce11")
     end
-  end
-
-  it "returns a list of zones as a non-empty hash" do
-    @client.list_zones.wont_be_nil
-    @client.list_zones.must_be_kind_of Hash
-    @client.list_zones["listzonesresponse"]["count"].must_be :>=, 1
-  end
-  
-  it "lists a zone with format" do
-    @client.list_zones["listzonesresponse"]["zone"].first["id"].must_be_kind_of String
-    @client.list_zones["listzonesresponse"]["zone"].first["name"].must_be_kind_of String
-    @client.list_zones["listzonesresponse"]["zone"].first["networktype"].must_be_kind_of String
-    @client.list_zones["listzonesresponse"]["zone"].first["securitygroupsenabled"].must_be_kind_of TrueClass
-    @client.list_zones["listzonesresponse"]["zone"].first["allocationstate"].must_be_kind_of String
-    @client.list_zones["listzonesresponse"]["zone"].first["zonetoken"].must_be_kind_of String
-    @client.list_zones["listzonesresponse"]["zone"].first["dhcpprovider"].must_be_kind_of String
-    @client.list_zones["listzonesresponse"]["zone"].first["localstorageenabled"].must_be_kind_of TrueClass
-    @client.list_zones["listzonesresponse"]["zone"].first["tags"].must_be_kind_of Array
-  end
-  
-  it "returns a collection of zone with format" do
-    @client.zones.first.id.must_be_kind_of String
-    @client.zones.first.name.must_be_kind_of String
-    @client.zones.first.network_type.must_be_kind_of String
-    @client.zones.first.security_groups_enabled.must_be_kind_of TrueClass
-    @client.zones.first.allocation_state.must_be_kind_of String
-    @client.zones.first.zone_token.must_be_kind_of String
-    @client.zones.first.dhcp_provider.must_be_kind_of String
+    
+    it "must get the correct zone" do
+      @zone.id.must_equal "1128bd56-b4d9-4ac6-a7b9-c715b187ce11"
+      @zone.name.must_equal "ch-gva-2"
+      @zone.network_type.must_equal "Basic"
+    end
   end
 end

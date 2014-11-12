@@ -16,7 +16,7 @@ describe Fog::Compute::Exoscale do
   
   describe "when creating a new keypair" do
     before do
-      @new_keypair = @client.create_ssh_key_pair(:name => 'fog_exoscale_test_new')['createsshkeypairresponse']['keypair']
+      @new_keypair = @client.create_ssh_key_pair(:name => "fog_test_keypair_#{Random.new.rand(1..2000)}")['createsshkeypairresponse']['keypair']
     end
   
     it "must have one more keypair" do
@@ -24,11 +24,11 @@ describe Fog::Compute::Exoscale do
     end
     
     it "must list the new keypair" do
-      @client.list_ssh_key_pairs(:name => 'fog_exoscale_test_new')['listsshkeypairsresponse']['sshkeypair'][0]['fingerprint'].must_equal @new_keypair['fingerprint']
+      @client.list_ssh_key_pairs(:name => @new_keypair['name'])['listsshkeypairsresponse']['sshkeypair'][0]['fingerprint'].must_equal @new_keypair['fingerprint']
     end
     
     after do
-      @client.delete_ssh_key_pair(:name => 'fog_exoscale_test_new')
+      @client.delete_ssh_key_pair(:name => @new_keypair['name'])
     end
   end
   
@@ -64,7 +64,7 @@ HV8gl2NTLZ10S1UWcC+Sn3ViOBjqVN5vNAcxK1BjKR8SDDCOlUmhAg==
 -----END RSA PRIVATE KEY-----"
       
       @existing_key_pair = { "publickey" => public_key,
-                             "name"       => "fog_exoscale_test_existing"}
+                             "name"       => "fog_test_keypair_#{Random.new.rand(1..2000)}"}
     end
     
     it "must register an existing key" do
@@ -72,7 +72,7 @@ HV8gl2NTLZ10S1UWcC+Sn3ViOBjqVN5vNAcxK1BjKR8SDDCOlUmhAg==
     end
     
     after do
-      @client.delete_ssh_key_pair(:name => 'fog_exoscale_test_existing')
+      @client.delete_ssh_key_pair(:name => @existing_key_pair['name'])
     end
   end
 end

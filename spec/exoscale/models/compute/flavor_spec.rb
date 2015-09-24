@@ -3,6 +3,11 @@
 require "minitest/autorun"
 require "fog/exoscale"
 
+# Monkey patching ...
+module Boolean; end
+class TrueClass; include Boolean; end
+class FalseClass; include Boolean; end
+
 describe "Fog::Compute::Exoscale::Flavor" do
   before do
     @config = {
@@ -36,7 +41,7 @@ describe "Fog::Compute::Exoscale::Flavor" do
     
     it "must respond to #default_use" do
       @client.flavors.first.must_respond_to :default_use
-      @client.flavors.first.default_use.must_be_kind_of FalseClass
+      @client.flavors.first.default_use.must_be_kind_of Boolean #FalseClass
     end
     
     it "must respond to #display_text" do
@@ -61,7 +66,7 @@ describe "Fog::Compute::Exoscale::Flavor" do
     
     it "must respond to #limit_cpu_use" do
       @client.flavors.first.must_respond_to :limit_cpu_use
-      @client.flavors.first.limit_cpu_use.must_be_kind_of FalseClass
+      @client.flavors.first.limit_cpu_use.must_be_kind_of Boolean #FalseClass
     end
     
     it "must respond to #tags" do
@@ -81,7 +86,7 @@ describe "Fog::Compute::Exoscale::Flavor" do
     
     it "must respond to #offer_ha" do
       @client.flavors.first.must_respond_to :offer_ha
-      @client.flavors.first.offer_ha.must_be_kind_of FalseClass
+      @client.flavors.first.offer_ha.must_be_kind_of Boolean #FalseClass
     end
     
     it "must respond to #network_rate" do

@@ -33,13 +33,13 @@ describe "Fog::Compute::Exoscale::Images" do
   
   describe "when getting a specific image" do
     before do
-      @image = @client.images.get("3235e860-2f00-416a-9fac-79a03679ffd8")
+      @image = @client.images.get("17bfb3ee-50a7-4434-8acc-f2807bd9ed60")
     end
     
     it "must get the correct image" do
-      @image.id.must_equal "3235e860-2f00-416a-9fac-79a03679ffd8"
+      @image.id.must_equal "17bfb3ee-50a7-4434-8acc-f2807bd9ed60"
       @image.account.must_equal "exostack"
-      @image.display_text.must_equal "Windows Server 2012 R2 WINRM 100GB Disk"
+      @image.display_text.must_equal "Linux Debian 7 64-bit 10GB Disk"
       @image.zone_id.must_equal "1128bd56-b4d9-4ac6-a7b9-c715b187ce11"
     end
   end

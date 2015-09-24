@@ -3,6 +3,11 @@
 require "minitest/autorun"
 require "fog/exoscale"
 
+# Monkey patching ...
+module Boolean; end
+class TrueClass; include Boolean; end
+class FalseClass; include Boolean; end
+
 describe "Fog::Compute::Exoscale::Zone" do
   before do
     @config = {
@@ -41,7 +46,7 @@ describe "Fog::Compute::Exoscale::Zone" do
       
     it "must respong to #security_groups_enabled" do
       @client.zones.first.must_respond_to :security_groups_enabled
-      @client.zones.first.security_groups_enabled.must_be_kind_of TrueClass
+      @client.zones.first.security_groups_enabled.must_be_kind_of Boolean #TrueClass
     end
       
     it "must respong to #allocation_state" do

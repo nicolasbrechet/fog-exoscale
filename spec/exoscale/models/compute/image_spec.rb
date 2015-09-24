@@ -3,6 +3,11 @@
 require "minitest/autorun"
 require "fog/exoscale"
 
+# Monkey patching ...
+module Boolean; end
+class TrueClass; include Boolean; end
+class FalseClass; include Boolean; end
+
 describe "Fog::Compute::Exoscale::Image" do
   before do
     @config = {
@@ -46,7 +51,7 @@ describe "Fog::Compute::Exoscale::Image" do
       
     it "must respond to #cross_zones" do
       @client.images.first.must_respond_to :cross_zones
-      @client.images.first.cross_zones.must_be_kind_of TrueClass    
+      @client.images.first.cross_zones.must_be_kind_of Boolean # TrueClass
     end
       
     it "must respond to #details" do
@@ -101,22 +106,22 @@ describe "Fog::Compute::Exoscale::Image" do
       
     it "must respond to #is_extractable" do
       @client.images.first.must_respond_to :is_extractable
-      @client.images.first.is_extractable.must_be_kind_of TrueClass    
+      @client.images.first.is_extractable.must_be_kind_of Boolean # TrueClass
     end
       
     it "must respond to #is_featured" do
       @client.images.first.must_respond_to :is_featured
-      @client.images.first.is_featured.must_be_kind_of FalseClass    
+      @client.images.first.is_featured.must_be_kind_of Boolean # FalseClass    
     end
       
     it "must respond to #is_public" do
       @client.images.first.must_respond_to :is_public
-      @client.images.first.is_public.must_be_kind_of TrueClass    
+      @client.images.first.is_public.must_be_kind_of Boolean # TrueClass    
     end
       
     it "must respond to #is_ready" do
       @client.images.first.must_respond_to :is_ready
-      @client.images.first.is_ready.must_be_kind_of TrueClass    
+      @client.images.first.is_ready.must_be_kind_of Boolean # TrueClass    
     end
       
     it "must respond to #name" do
@@ -136,7 +141,7 @@ describe "Fog::Compute::Exoscale::Image" do
       
     it "must respond to #password_enabled" do
       @client.images.first.must_respond_to :password_enabled
-      @client.images.first.password_enabled.must_be_kind_of TrueClass    
+      @client.images.first.password_enabled.must_be_kind_of Boolean # TrueClass    
     end
       
     it "must respond to #project" do

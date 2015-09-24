@@ -3,6 +3,11 @@
 require "minitest/autorun"
 require "fog/exoscale"
 
+# Monkey patching ...
+module Boolean; end
+class TrueClass; include Boolean; end
+class FalseClass; include Boolean; end
+
 describe "Fog::Compute::Exoscale::Server" do
   before do
     @config = {
@@ -51,13 +56,13 @@ describe "Fog::Compute::Exoscale::Server" do
       @server.state.must_be_kind_of String
 
       @server.must_respond_to :haenable
-      @server.haenable.must_be_kind_of FalseClass
+      @server.haenable.must_be_kind_of Boolean #FalseClass
 
       @server.must_respond_to :memory
       @server.memory.must_be_kind_of Fixnum
 
       @server.must_respond_to :display_name
-      @server.display_name.must_be_kind_of NilClass
+      @server.display_name.must_be_kind_of String
 
       @server.must_respond_to :domain_id
       @server.domain_id.must_be_kind_of String
@@ -87,7 +92,7 @@ describe "Fog::Compute::Exoscale::Server" do
       @server.templated_display_text.must_be_kind_of String
 
       @server.must_respond_to :password_enabled
-      @server.password_enabled.must_be_kind_of TrueClass
+      @server.password_enabled.must_be_kind_of Boolean #TrueClass
 
       @server.must_respond_to :flavor_id
       @server.flavor_id.must_be_kind_of String

@@ -17,7 +17,20 @@ module Fog
           request(options)
         end
       end
+      
+      class Mock
+        def list_networks(options={})
+          networks = self.data[:networks].values
 
+          {
+            "listnetworksresponse"=>
+            {
+              "count" => networks.size,
+              "network" => networks
+            }
+          }
+        end
+      end 
     end
   end
 end

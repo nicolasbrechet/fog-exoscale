@@ -1,6 +1,7 @@
 # Fog::Exoscale
 
-[![Build Status](https://travis-ci.org/fog/fog-exoscale.svg?branch=master)](https://travis-ci.org/fog/fog-exoscale)[![Code Climate](https://codeclimate.com/github/fog/fog-exoscale/badges/gpa.svg)](https://codeclimate.com/github/fog/fog-exoscale)[![Test Coverage](https://codeclimate.com/github/fog/fog-exoscale/badges/coverage.svg)](https://codeclimate.com/github/fog/fog-exoscale)[![Coverage Status](https://coveralls.io/repos/fog/fog-exoscale/badge.png)](https://coveralls.io/r/fog/fog-exoscale)
+[![Build Status](https://travis-ci.org/fog/fog-exoscale.svg)](https://travis-ci.org/fog/fog-exoscale)[![Code Climate](https://codeclimate.com/github/fog/fog-exoscale/badges/gpa.svg)](https://codeclimate.com/github/fog/fog-exoscale)[![Test Coverage](https://codeclimate.com/github/fog/fog-exoscale/badges/coverage.svg)](https://codeclimate.com/github/fog/fog-exoscale/coverage)[![Coverage Status](https://coveralls.io/repos/fog/fog-exoscale/badge.svg?branch=master&service=github)](https://coveralls.io/github/fog/fog-exoscale?branch=master)
+
 
 Module for the 'fog' gem to support Exoscale
 

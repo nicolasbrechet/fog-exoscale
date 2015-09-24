@@ -24,26 +24,19 @@ describe Fog::Compute::Exoscale do
                                                                        :startPort => '22', 
                                                                        :endPort => '22', 
                                                                        :protocol => 'TCP')['authorizesecuritygroupingressresponse']['jobid']
-      sleep 2 # because it's an async request
-      ingress_result        = @client.query_async_job_result(:jobId => ingress_job_id)['queryasyncjobresultresponse']
-      while (ingress_result['jobresult'] == nil)
-        sleep 2
-        ingress_result = @client.query_async_job_result(:jobId => ingress_job_id)['queryasyncjobresultresponse']
-      end
-      @ingress_rule_id      = ingress_result['jobresult']['securitygroup']['ingressrule'][0]['ruleid']
+                                                                       
+      Fog.wait_for { 
+        @ingress_rule_id = @client.query_async_job_result(:jobId => ingress_job_id)['queryasyncjobresultresponse']['jobresult']['securitygroup']['ingressrule'][0]['ruleid']
+      }
       
       egress_job_id         = @client.authorize_security_group_egress(:securityGroupName => @security_group['name'], 
                                                                       :cidrList => '0.0.0.0/0',
                                                                       :startPort => '22',
                                                                       :endPort => '22',
                                                                       :protocol => 'TCP')['authorizesecuritygroupegressresponse']['jobid']
-      sleep 2 # because it's an async request
-      egress_result         = @client.query_async_job_result(:jobId => egress_job_id)['queryasyncjobresultresponse']
-      while (egress_result['jobresult'] == nil)
-        sleep 2
-        egress_result = @client.query_async_job_result(:jobId => egress_job_id)['queryasyncjobresultresponse']
-      end
-      @egress_rule_id       = egress_result['jobresult']['securitygroup']['egressrule'][0]['ruleid']
+      Fog.wait_for { 
+        @egress_rule_id = @client.query_async_job_result(:jobId => egress_job_id)['queryasyncjobresultresponse']['jobresult']['securitygroup']['egressrule'][0]['ruleid']
+      }
       
       @security_group       = @client.list_security_groups['listsecuritygroupsresponse']['securitygroup'].select{|sg| sg['name']==@security_group['name']}[0]
                             

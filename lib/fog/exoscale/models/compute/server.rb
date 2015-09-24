@@ -35,7 +35,7 @@ module Fog
         attribute :root_device_type,                        :aliases => 'rootdevicetype'
         attribute :group
         attribute :key_name,                                :aliases => 'keypair'
-        attribute :user_data,                                :aliases => 'userdata'
+        attribute :user_data,                               :aliases => 'userdata'
         attribute :security_group_list,    :type => :array, :aliases => 'securitygroup'
         attribute :nics,                   :type => :array, :aliases => 'nic'
 
@@ -115,7 +115,7 @@ module Fog
             'iptonetworklist'   => ip_to_network_list,
             'projectid'         => project_id,
             'keypair'           => key_name,
-            'userdata'           => user_data,
+            'userdata'          => user_data,
           }
 
           options.merge!('networkids' => network_ids) if network_ids

@@ -1,4 +1,5 @@
-* Paulo Henrique Lopes Ribeiro <plribeiro@zertico.com>
+* Nicolas Brechet
+* Paulo Henrique Lopes Ribeiro <plribeiro3000@gmail.com>
 
 Thanks to everyone who worked on supporting Cloudstack with Fog:
 

@@ -17,7 +17,21 @@ module Fog
           request(options)
         end
       end
+      
+      class Mock
+        def list_accounts(options={})
+          accounts = self.data[:accounts].values
 
+          {
+            "listaccountsresponse"=>
+            {
+              "count" => accounts.size,
+              "account" => accounts
+            }
+          }
+        end
+      end 
+      
     end
   end
 end

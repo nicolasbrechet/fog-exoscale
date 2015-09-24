@@ -2,7 +2,7 @@ language: ruby
 
 sudo: false
 
-script: bundle exec rake travis
+script: bundle exec rake
 
 rvm:
   - 1.9
